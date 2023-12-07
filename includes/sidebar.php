@@ -36,7 +36,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
                 <a class="collapse-item" href="add_new_patient.php">Insert a new patient</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
+                <a class="collapse-item" href="view_patients.php">View Patients Information</a>
             </div>
         </div>
     </li>

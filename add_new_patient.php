@@ -35,30 +35,88 @@ require_once "includes/header.php"
                         </div>
 
                         <!-- Content Row -->
+                        <?php
+                        // Include the database connection file
+                        include('config.php');
+
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_new_patient'])) {
+                            // Retrieve form data
+                            $firstname = $_POST['firstname'];
+                            $lastname = $_POST['lastname'];
+                            $email = $_POST['email'];
+                            $phone = $_POST['phone'];
+                            $gender = $_POST['gender'];
+                            $dob = $_POST['dob'];
+                            $address = $_POST['address'];
+
+                            // Perform data validation and sanitation (implement as needed)
+
+                            // Insert data into the 'patients' table
+                            $insertPatientQuery = "INSERT INTO patients (first_name, last_name, email, phone_number, gender, dob, address) 
+                           VALUES (:firstname, :lastname, :email, :phone, :gender, :dob, :address)";
+
+                            $stmt = $conn->prepare($insertPatientQuery);
+
+                            // Bind parameters
+                            $stmt->bindParam(':firstname', $firstname);
+                            $stmt->bindParam(':lastname', $lastname);
+                            $stmt->bindParam(':email', $email);
+                            $stmt->bindParam(':phone', $phone);
+                            $stmt->bindParam(':gender', $gender);
+                            $stmt->bindParam(':dob', $dob);
+                            $stmt->bindParam(':address', $address);
+
+                            // Execute the statement
+                            try {
+                                $stmt->execute();
+                                echo '<div class="alert alert-success" role="alert">
+                                Patient added successfully!</div>';
+                            } catch (PDOException $e) {
+                                echo "Error: " . $e->getMessage();
+                            }
+
+                            // Close the statement and database connection
+                            $stmt = null;
+                            $conn = null;
+                        }
+                        ?>
 
 
-                        <form class="user" action="" method="POST">
+
+                        <form class="user" action="add_new_patient.php" method="POST">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control" id="firstName" name="firstname" placeholder="First Name" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <select name="gender" class="form-control rounded-lg" id="gender">
+                                        <option value="" selected="selected">-Select Gender-</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of birth" required>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="fullName" name="name" placeholder="Full Name" required>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="address" name="address" placeholder="Address" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="phone" name="phone" placeholder="Phone number" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email" required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="date" class="form-control form-control-user" id="dob" name="dob" placeholder="Date of birth" required>
-                                </div>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block" name="add_new_patient">
-                                Add New Patient
+                                <b>Add New Patient</b>
                             </button>
                         </form>
                     </div>

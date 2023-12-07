@@ -37,6 +37,7 @@
                 <h6 class="collapse-header">Custom Components:</h6>
                 <a class="collapse-item" href="add_new_patient.php">Insert a new patient</a>
                 <a class="collapse-item" href="view_patients.php">View Patients Information</a>
+                <a class="collapse-item" href="schedule_appointment.php">Schedule Appointment</a>
             </div>
         </div>
     </li>

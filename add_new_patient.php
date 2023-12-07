@@ -38,9 +38,6 @@ require_once "includes/header.php"
 
                         <!-- Content Row -->
                         <?php
-                        // Include the database connection file
-                        include('config.php');
-
                         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_new_patient'])) {
                             // Retrieve form data
                             $firstname = $_POST['firstname'];

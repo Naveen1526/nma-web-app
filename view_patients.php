@@ -71,6 +71,7 @@ $conn = null;
                                             <th>Address</th>
                                             <th>Registered Date</th>
                                             <th>View Patient</th>
+                                            <th>Schedule Appointment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,6 +90,7 @@ $conn = null;
                                                 <td><?= $patient['address']; ?></td>
                                                 <td><?= $patient['registration_date']; ?></td>
                                                 <td><a href="view_patient.php?id=<?= $patient['patient_id']; ?>">View</a></td>
+                                                <td><a href="schedule_appointment.php?id=<?= $patient['patient_id']; ?>">Schedule</a></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -104,6 +106,7 @@ $conn = null;
                                             <th>Address</th>
                                             <th>Registered Date</th>
                                             <th>View Patient</th>
+                                            <th>Schedule Appointment</th>
                                         </tr>
                                     </tfoot>
                                 </table>

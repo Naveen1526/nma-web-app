@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"> <?= $patient['first_name']; ?> Medical History</h1>
-                        <a href="view_patients.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-users fa-sm text-white-50"></i> View All Patient</a>
+                        <a href="check_medical_history.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-users fa-sm text-white-50"></i> View All Patient Medical History</a>
                     </div>
 
                     <!-- Content Row -->
